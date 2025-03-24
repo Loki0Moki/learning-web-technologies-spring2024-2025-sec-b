@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Picture Upload</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Profile Picture</h1>
+    <form id="profileForm" onsubmit="return validateForm()">
+        <label for="userId">User Id:</label><br>
+        <input type="text" id="userId" name="userId">
+        <span id="userIdError" class="error"></span>
+        <br><br>
+        <label for="profilePicture">Picture:</label><br>
+        <input type="file" id="profilePicture" name="profilePicture">
+        <span id="pictureError" class="error"></span>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            const userId = document.getElementById('userId').value;
+            const profilePicture = document.getElementById('profilePicture').value;
+            const userIdError = document.getElementById('userIdError');
+            const pictureError = document.getElementById('pictureError');
+
+            let isValid = true;
+
+            if (userId === "") {
+                userIdError.textContent = "User Id cannot be empty.";
+                isValid = false;
+            } else if (isNaN(userId) || parseInt(userId) <= 0) {
+                userIdError.textContent = "User Id must be a positive number.";
+                isValid = false;
+            } else {
+                userIdError.textContent = "";
+            }
+
+            if (profilePicture === "") {
+                pictureError.textContent = "Please select a profile picture.";
+                isValid = false;
+            } else {
+                pictureError.textContent = "";
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

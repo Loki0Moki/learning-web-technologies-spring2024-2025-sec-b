@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Form</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <form id="genderForm" onsubmit="return validateForm()" action="DOB.html">
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br>
+        <span id="genderError" class="error"></span>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const genderError = document.getElementById('genderError');
+
+            if (!gender) {
+                genderError.textContent = "Please select a gender.";
+                return false;
+            } else {
+                genderError.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
